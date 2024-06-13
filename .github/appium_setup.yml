@@ -1,0 +1,53 @@
+name: Appium setup
+
+on:
+  push:
+    branches:
+      - main
+env:
+  GH_TOKEN: ${{ secrets.REPO_GIT_TOKEN }}
+
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.REPO_GIT_TOKEN }}
+
+      - name: Setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.4'
+          channel: 'stable'
+
+      - run: flutter --version
+
+      - name: Install flutter dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --dart-define-from-file=.env/ci.json
+
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-apk
+          path: build/app/outputs/flutter-apk/*.apk
+          overwrite: true
+
+
