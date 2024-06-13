@@ -8,7 +8,7 @@ env:
   GH_TOKEN: ${{ secrets.REPO_GIT_TOKEN }}
 
 jobs:
-  build_apk:
+  appium_test:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -39,15 +39,5 @@ jobs:
       - name: Install flutter dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --dart-define-from-file=.env/ci.json
-
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-apk
-          path: build/app/outputs/flutter-apk/*.apk
-          overwrite: true
-
-
+      - name: Install and Run Appium Server
+        uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
