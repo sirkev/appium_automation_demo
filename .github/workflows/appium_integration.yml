@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: '18.19.0'
 
-      - name: Install android SDK + Emulator
+      - name: Install android SDK
         run: |
           chmod +x scripts/install-android-sdk.sh
           scripts/install-android-sdk.sh
