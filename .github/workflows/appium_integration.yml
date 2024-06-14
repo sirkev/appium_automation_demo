@@ -84,4 +84,4 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: pixel_6_pro
-          script: python3 ./appium_tests/appium_test.py
+          script: python3 appium_tests/appium_test.py
