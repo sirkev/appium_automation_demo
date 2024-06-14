@@ -9,6 +9,10 @@ on:
 jobs:
   appium_test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [ 28 ]
+        target: [ default ]
     permissions:
       contents: write
     steps:
@@ -25,27 +29,6 @@ jobs:
           java-version: '17'
 
 
-      - name: Set up NodeJS 18
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.19.0'
-
-      # Run Android Emulator
-      - name: Run Android Emulator
-        run: |
-          echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
-          echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
-          echo $ANDROID_HOME/emulator/emulator -list-avds
-          echo "Starting emulator"
-          nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
-          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
-          $ANDROID_HOME/platform-tools/adb devices
-          echo "Emulator started"
-      # Use HTTPS repos
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -57,5 +40,29 @@ jobs:
       - name: Install flutter dependencies
         run: flutter pub get
 
-      - name: Install and Run Appium Server
-        uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
+      - name: Set up NodeJS 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.0'
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run Android Emulator
+      - name: Install the Emulator
+        run: |
+          chmod +x ./scripts/RunAppiumServer.sh
+          ./scripts/RunAppiumServer.sh
+        shell: bash
+
+      - name: Run Appium Tests
+        uses: reactivecircus/android-emulator-runner@v2.27.0
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
+          profile: pixel 6a
+          script: ./gradlew connectedCheck
