@@ -28,10 +28,10 @@ echo 'export PATH=$SDK/emulator:$SDK/tools:$SDK/tools/bin:$SDK/platform-tools:$P
 source ~/.bashrc
 
 # Install Android Image version 31
-yes | sudo sdkmanager "platform-tools" "platforms;android-31" "emulator"
+yes | sudo sdkmanager --install 'build-tools;33.0.0' platform-tools 'platforms;android-31'
 
 sudo sdkmanager --list
-#yes | sudo sdkmanager --channel=0 "system-images;android-31;google_apis_playstore;x86_64"
+yes | sudo sdkmanager --install 'system-images;android-31;default;x86_64' --channel=0 > /dev/null
 
 emulator -version
 

@@ -38,6 +38,13 @@ jobs:
       - name: Install flutter dependencies
         run: flutter pub get
 
+
+      - name: Run Unit tests
+        run: flutter --test
+
+      - name: build apk
+        run: flutter build apk
+
       - name: Set up NodeJS 18
         uses: actions/setup-node@v4
         with:
@@ -46,25 +53,24 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-#      - name: Install android SDK
-#        run: |
-#          chmod +x scripts/install-android-sdk.sh
-#          scripts/install-android-sdk.sh
-#        shell: bash
-
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-#
-#
-#      - name: Boot the Emulator
-#        run: |
-#          chmod +x scripts/emulator-up.sh
-#          scripts/emulator-up.sh
-#        shell: bash
+
+      - name: Install android SDK
+        run: |
+          chmod +x scripts/install-android-sdk.sh
+          scripts/install-android-sdk.sh
+        shell: bash
+
+      - name: Boot the Emulator
+        run: |
+          chmod +x scripts/emulator-up.sh
+          scripts/emulator-up.sh
+        shell: bash
 
       - name: Start Appium server
         run: |
@@ -78,4 +84,4 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: pixel_6_pro
-          script: ./gradlew connectedCheck
+          script: python3 ./appium_tests/appium_test.py
