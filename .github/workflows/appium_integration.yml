@@ -59,18 +59,18 @@ jobs:
 
 #      - name: build apk
 #        run: flutter build apk
-
-      - name: Install android SDK
-        run: |
-          chmod +x scripts/install-android-sdk.sh
-          scripts/install-android-sdk.sh
-        shell: bash
-
-      - name: Boot the Emulator
-        run: |
-          chmod +x scripts/emulator-up.sh
-          scripts/emulator-up.sh
-        shell: bash
+#
+#      - name: Install android SDK
+#        run: |
+#          chmod +x scripts/install-android-sdk.sh
+#          scripts/install-android-sdk.sh
+#        shell: bash
+#
+#      - name: Boot the Emulator
+#        run: |
+#          chmod +x scripts/emulator-up.sh
+#          scripts/emulator-up.sh
+#        shell: bash
 
       - name: Start Appium server
         run: |
