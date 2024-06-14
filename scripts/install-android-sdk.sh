@@ -15,11 +15,12 @@ java -version
 cd ~ && wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
 ANDROID_HOME=/opt/androidsdk
 mkdir -p $ANDROID_HOME
-sudo apt install unzip -y && unzip sdk-tools-linux-4333796.zip -d $ANDROID_HOME
+sudo apt install unzip -y && unzip commandlinetools-linux-11076708_latest -d $ANDROID_HOME
 
 echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.bashrc
 echo 'export SDK=$ANDROID_HOME' >> ~/.bashrc
 echo 'export PATH=$SDK/emulator:$SDK/tools:$SDK/tools/bin:$SDK/platform-tools:$PATH' >> ~/.bashrc
+# shellcheck disable=SC1090
 source ~/.bashrc
 
 # Install Android Image version 29
