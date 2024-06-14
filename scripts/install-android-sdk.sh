@@ -29,7 +29,8 @@ source ~/.bashrc
 
 # Install Android Image version 29
 yes | sudo sdkmanager "platform-tools" "platforms;android-29" "emulator"
-yes | sudo sdkmanager "system-images;android-29;google_apis_playstore;x86"
+yes | sudo sdkmanager --channel=0 "system-images;android-Q;google_apis;x86"
+
 emulator -version
 
 echo "INSTALL ANDROID SDK DONE!"
