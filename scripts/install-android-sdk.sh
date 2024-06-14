@@ -29,7 +29,9 @@ source ~/.bashrc
 
 # Install Android Image version 31
 yes | sudo sdkmanager "platform-tools" "platforms;android-31" "emulator"
-yes | sudo sdkmanager --channel=0 "system-images;android-31;google_apis_playstore;x86_64"
+
+sudo sdkmanager --list
+#yes | sudo sdkmanager --channel=0 "system-images;android-31;google_apis_playstore;x86_64"
 
 emulator -version
 
