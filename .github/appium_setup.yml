@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-env:
-  GH_TOKEN: ${{ secrets.REPO_GIT_TOKEN }}
+
 
 jobs:
   appium_test:
