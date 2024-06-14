@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  appium_test:
+  appium_integration:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,8 +32,8 @@ jobs:
         with:
           flutter-version: '3.19.4'
           channel: 'stable'
-
-      - run: flutter --version
+      - name: Check flutter version
+        run: flutter --version
 
       - name: Install flutter dependencies
         run: flutter pub get

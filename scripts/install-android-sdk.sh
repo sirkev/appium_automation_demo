@@ -6,12 +6,16 @@ set -e #stop immediately if any error happens
 sudo apt update
 sudo apt install openjdk-8-jdk -y
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
-sudo apt-get install android-sdk
 
 java -version
 
 # Install SDK Manager
-# you can find this file at https://developer.android.com/studio/index.html#downloads android studio downloads section (command line tools only)
+sudo apt-get install android-sdk
+sudo apt-get install sdkmanager
+
+
+# Install android command line tools
+#can be found at https://developer.android.com/studio/index.html#downloads android studio downloads section (command line tools only)
 cd ~ && wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
 ANDROID_HOME=/opt/androidsdk
 mkdir -p $ANDROID_HOME
