@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [ 29 ]
+        api-level: [ 31 ]
         target: [ default ]
     permissions:
       contents: write
@@ -73,5 +73,5 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: x86_64
-          profile: pixel 6a
+          profile: pixel_6_pro
           script: ./gradlew connectedCheck

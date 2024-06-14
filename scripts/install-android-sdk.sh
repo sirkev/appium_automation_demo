@@ -27,9 +27,9 @@ echo 'export PATH=$SDK/emulator:$SDK/tools:$SDK/tools/bin:$SDK/platform-tools:$P
 # shellcheck disable=SC1090
 source ~/.bashrc
 
-# Install Android Image version 29
-yes | sudo sdkmanager "platform-tools" "platforms;android-29" "emulator"
-yes | sudo sdkmanager --channel=0 "system-images;android-28;default;x86"
+# Install Android Image version 31
+yes | sudo sdkmanager "platform-tools" "platforms;android-31" "emulator"
+yes | sudo sdkmanager --channel=0 "system-images;android-31;google_apis_playstore;x86_64"
 
 emulator -version
 
