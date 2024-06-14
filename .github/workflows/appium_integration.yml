@@ -58,13 +58,14 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
+#
+#
+#      - name: Boot the Emulator
+#        run: |
+#          chmod +x scripts/emulator-up.sh
+#          scripts/emulator-up.sh
+#        shell: bash
 
-
-      - name: Boot the Emulator
-        run: |
-          chmod +x scripts/emulator-up.sh
-          scripts/emulator-up.sh
-        shell: bash
       - name: Start Appium server
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
