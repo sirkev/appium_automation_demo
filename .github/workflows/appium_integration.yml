@@ -40,7 +40,7 @@ jobs:
 
 
       - name: Run Unit tests
-        run: flutter --test
+        run: flutter test
 
       - name: build apk
         run: flutter build apk
