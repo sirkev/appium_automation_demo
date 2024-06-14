@@ -51,7 +51,6 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: Run Android Emulator
       - name: Install the Emulator
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
