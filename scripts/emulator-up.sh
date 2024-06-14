@@ -11,10 +11,10 @@ fi
 emulator -version
 
 # create virtual device, default using Android 10 image (API Level 29)
-echo no | avdmanager create avd -n avd28 -k "system-images;android-29;google_apis;x86_64"
+echo no | avdmanager --verbose create avd --force --name "pixel_6_pro" --package "system-images;android-29;google_apis;x86_64" --tag "google_apis" --abi "x86_64" --device "pixel_6_pro"
 
 # start the emulator
-emulator -avd avd28 -no-audio -no-window -no-accel &
+emulator -avd avd29 -no-audio -no-window -no-accel &
 
 # show connected virtual device
 adb devices
