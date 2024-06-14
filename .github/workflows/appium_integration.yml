@@ -43,11 +43,14 @@ jobs:
         with:
           node-version: '18.19.0'
 
-      - name: Install android SDK
-        run: |
-          chmod +x scripts/install-android-sdk.sh
-          scripts/install-android-sdk.sh
-        shell: bash
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+#      - name: Install android SDK
+#        run: |
+#          chmod +x scripts/install-android-sdk.sh
+#          scripts/install-android-sdk.sh
+#        shell: bash
 
       - name: Enable KVM
         run: |
