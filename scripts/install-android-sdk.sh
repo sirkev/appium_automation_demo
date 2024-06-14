@@ -29,7 +29,7 @@ source ~/.bashrc
 
 # Install Android Image version 29
 yes | sudo sdkmanager "platform-tools" "platforms;android-29" "emulator"
-yes | sudo sdkmanager --channel=0 "system-images;android-29;default;x86"
+yes | sudo sdkmanager --channel=0 "system-images;android-28;default;x86"
 
 emulator -version
 
