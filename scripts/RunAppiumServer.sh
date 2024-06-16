@@ -6,6 +6,10 @@
 # Exit immediately if a command exits with a non-zero status.
 set -ex
 
+#install python client
+pip install Appium-Python-Client
+
+
 # Install the latest version of Appium globally.
 npm install -g appium@next
 
