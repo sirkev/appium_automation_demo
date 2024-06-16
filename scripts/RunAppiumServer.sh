@@ -6,9 +6,8 @@
 # Exit immediately if a command exits with a non-zero status.
 set -ex
 
-#install python client
+#install appium python client
 pip install Appium-Python-Client
-
 
 # Install the latest version of Appium globally.
 npm install -g appium@next
@@ -22,9 +21,12 @@ appium driver install uiautomator2
 # Install the Flutter driver for Flutter testing.
 appium driver install --source=npm appium-flutter-driver
 
+#install appium reporting plugin
+appium plugin install --source=npm appium-reporter-plugin
+
 # Confirm the installed version of Appium.
 appium -v
 
 # Starts Appium in the background, redirecting both stdout and stderr to /dev/null to suppress output,
 # but also log everything to a file named "appium.log".
-appium --log appium.log &>/dev/null &
+appium --use-plugins=appium-reporter-plugin --log appium.log &>/dev/null &
