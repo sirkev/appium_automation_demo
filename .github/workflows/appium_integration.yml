@@ -71,7 +71,8 @@ jobs:
           profile: pixel_6_pro
           script: python3 appium_tests/appium_test.py
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload logs on error
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: logs
@@ -107,7 +108,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish-dir: allure-report
+          publish_dir: allure-report
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           PUBLISH_BRANCH: gh-pages
