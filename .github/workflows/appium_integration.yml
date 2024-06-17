@@ -99,7 +99,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: allure-report
-          path: /allure-history/last-history
+          path: allure-report
           retention-days: 20
 
       - name: Deploy report to Github Pages
@@ -107,7 +107,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-#          publish-dir: allure-report
+          publish-dir: allure-report
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           PUBLISH_BRANCH: gh-pages
