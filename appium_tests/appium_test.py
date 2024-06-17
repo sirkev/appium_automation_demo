@@ -26,7 +26,7 @@ class TestAppium(unittest.TestCase):
     def test_counter_increments(self) -> None:
         # Verify that the counter starts at 0
         counter_text = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="0"]')
-        self.(counter_text)
+        self.assertIsNotNone(counter_text)
 
         counter_text = self.driver.find_elements(by=AppiumBy.XPATH, value='//*[@text="1"]')
         self.assertEqual(len(counter_text), 0)
