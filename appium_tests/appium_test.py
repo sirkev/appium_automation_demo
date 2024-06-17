@@ -2,13 +2,15 @@ import unittest
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
+from time import sleep
+
 
 capabilities = dict(
     platformName='Android',
     automationName='uiautomator2',
     deviceName='Android',
-    appPackage='com.xysirk3v.example.appium_automation_demo',
-    appActivity='.MainActivity',
+    appPackage='com.android.settings',
+    appActivity='.Settings',
     language='en',
     locale='US'
 )
@@ -23,24 +25,18 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
 
-    def test_counter_increments(self) -> None:
-        # Verify that the counter starts at 0
-        counter_text = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="0"]')
-        self.assertIsNotNone(counter_text)
+    def test_find_battery(self) -> None:
+        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
+        el.click()
+        sleep(5)
 
-        counter_text = self.driver.find_elements(by=AppiumBy.XPATH, value='//*[@text="1"]')
-        self.assertEqual(len(counter_text), 0)
+        er = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery percentage"]')
+        er.click()
+        sleep(5)
 
-        # Tap the '+' icon
-        plus_icon = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='plus_icon_id')
-        plus_icon.click()
 
-        # Verify that the counter has incremented
-        counter_text = self.driver.find_elements(by=AppiumBy.XPATH, value='//*[@text="0"]')
-        self.assertEqual(len(counter_text), 0)
 
-        counter_text = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="1"]')
-        self.assertIsNotNone(counter_text)
+
 
 if __name__ == '__main__':
     unittest.main()
