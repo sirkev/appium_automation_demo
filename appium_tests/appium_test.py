@@ -7,8 +7,8 @@ capabilities = dict(
     platformName='Android',
     automationName='uiautomator2',
     deviceName='Android',
-    appPackage='com.android.settings',
-    appActivity='.Settings',
+    appPackage='com.xysirk3v.example.appium_automation_demo',
+    appActivity='.MainActivity',
     language='en',
     locale='US'
 )
@@ -23,15 +23,24 @@ class TestAppium(unittest.TestCase):
         if self.driver:
             self.driver.quit()
 
-    def test_find_battery(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
-        el.click()
+    def test_counter_increments(self) -> None:
+        # Verify that the counter starts at 0
+        counter_text = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="0"]')
+        self.assertIsNotNone(counter_text)
 
-    def test_find_storage(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Storage"]')
-        el.click()
+        counter_text = self.driver.find_elements(by=AppiumBy.XPATH, value='//*[@text="1"]')
+        self.assertEqual(len(counter_text), 0)
 
+        # Tap the '+' icon
+        plus_icon = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='plus_icon_id')  # Replace with the actual accessibility id
+        plus_icon.click()
 
+        # Verify that the counter has incremented
+        counter_text = self.driver.find_elements(by=AppiumBy.XPATH, value='//*[@text="0"]')
+        self.assertEqual(len(counter_text), 0)
+
+        counter_text = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="1"]')
+        self.assertIsNotNone(counter_text)
 
 if __name__ == '__main__':
     unittest.main()
