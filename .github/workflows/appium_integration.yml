@@ -57,6 +57,9 @@ jobs:
       - name: Run Unit tests
         run: flutter test
 
+      - name: Build apk
+        run: flutter build apk
+
       - name: Start Appium server
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
@@ -69,7 +72,9 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: pixel_6_pro
-          script: python3 appium_tests/appium_test.py
+          script: |
+            adb install build/app/outputs/flutter-apk/app-release.apk
+            python3 appium_tests/appium_test.py
 
       - name: Upload logs on error
         uses: actions/upload-artifact@v4

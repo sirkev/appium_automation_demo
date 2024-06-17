@@ -32,7 +32,7 @@ class TestAppium(unittest.TestCase):
         self.assertEqual(len(counter_text), 0)
 
         # Tap the '+' icon
-        plus_icon = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='plus_icon_id')  # Replace with the actual accessibility id
+        plus_icon = self.driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='plus_icon_id')
         plus_icon.click()
 
         # Verify that the counter has incremented
