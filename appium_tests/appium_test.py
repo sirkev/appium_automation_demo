@@ -27,6 +27,10 @@ class TestAppium(unittest.TestCase):
         el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
         el.click()
 
+    def test_find_storage(self) -> None:
+        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Storage"]')
+        el.click()
+
 
 
 if __name__ == '__main__':
