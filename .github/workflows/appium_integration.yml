@@ -75,13 +75,13 @@ jobs:
         if: failure()
         with:
           name: logs
-          path: logs
+          path: appium.log
 
-      - uses: actions/upload-artifact@master
-        with:
-          name: allure-results
-          path: allure-results
-          retention-days: 20
+#      - uses: actions/upload-artifact@master
+#        with:
+#          name: allure-results
+#          path: allure-results
+#          retention-days: 20
 
       - name: Get Allure history
         uses: actions/checkout@v4
@@ -104,8 +104,8 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v4
         env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
