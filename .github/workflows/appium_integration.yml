@@ -105,6 +105,8 @@ jobs:
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           PUBLISH_BRANCH: gh-pages
