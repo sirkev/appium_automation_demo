@@ -7,10 +7,10 @@ from time import sleep
 
 capabilities = dict(
     platformName='Android',
-    automationName='uiautomator2',
+    automationName='',
     deviceName='Android',
-    appPackage='com.android.settings',
-    appActivity='.Settings',
+    appPackage='com.xysirk3v.example.appium_automation_demo',
+    appActivity='.MainActivity',
     language='en',
     locale='US'
 )

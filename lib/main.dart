@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_driver/driver_extension.dart';
+
 
 void main() {
+  enableFlutterDriverExtension();
   runApp(const MyApp());
 }
 
@@ -58,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               key: const Key('counter'),
+              semanticsLabel: '$_counter',
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
@@ -68,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         key: const Key('increment'),
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child:  const Text('Increment',semanticsLabel: 'Increment',),
       ),
     );
   }
