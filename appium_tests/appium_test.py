@@ -1,42 +1,27 @@
-import unittest
 from appium import webdriver
-from appium.options.android import UiAutomator2Options
+from appium.options.common.base import AppiumOptions
 from appium.webdriver.common.appiumby import AppiumBy
-from time import sleep
-
-
-capabilities = dict(
-    platformName='Android',
-    automationName='',
-    deviceName='Android',
-    appPackage='com.xysirk3v.example.appium_automation_demo',
-    appActivity='.MainActivity',
-    language='en',
-    locale='US'
-)
-
-appium_server_url = 'http://localhost:4723'
-
-class TestAppium(unittest.TestCase):
-    def setUp(self) -> None:
-        self.driver = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
-
-    def tearDown(self) -> None:
-        if self.driver:
-            self.driver.quit()
-
-    def test_find_battery(self) -> None:
-        el = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery"]')
-        el.click()
-        sleep(5)
-
-        er = self.driver.find_element(by=AppiumBy.XPATH, value='//*[@text="Battery percentage"]')
-        er.click()
-        sleep(5)
 
 
 
+options = AppiumOptions()
+options.load_capabilities({
+    "appium:automationName": "UiAutomator2",
+    "appium:platformName": "Android",
+    "appium:platformVersion": "10",
+    "appium:deviceName": "emulator-5554",
+    "appium:app": "/home/kev/StudioProjects/appium_automation_demo/build/app/outputs/apk/debug/app-debug.apk",
+    "appium:newCommandTimeout": 3600,
+    "appium:connectHardwareKeyboard": True
+})
 
+driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 
-if __name__ == '__main__':
-    unittest.main()
+el1 = driver.find_element(by=AppiumBy.CLASS_NAME, value="android.widget.Button")
+el1.click()
+el2 = driver.find_element(by=AppiumBy.CLASS_NAME, value="android.widget.Button")
+el2.click()
+el3 = driver.find_element(by=AppiumBy.CLASS_NAME, value="android.widget.Button")
+el3.click()
+
+driver.quit()
