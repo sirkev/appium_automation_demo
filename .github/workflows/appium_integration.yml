@@ -70,7 +70,7 @@ jobs:
           arch: x86_64
           profile: pixel_6_pro
           script: |
-            adb install build/app/outputs/flutter-apk/app-release.apk
+            adb install build/app/outputs/flutter-apk/app-debug.apk
             python3 appium_tests/appium_test.py
 
       - name: Upload logs on error
