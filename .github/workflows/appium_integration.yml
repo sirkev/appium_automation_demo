@@ -99,6 +99,22 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
+
+      - name: Navigate to allure-results
+        run: cd./allure-results && ls
+
+      - name: Remove skipped results
+        run: |
+          for D in *; do
+            CREDENTIALS=$(jq -c '. |.status' "$D")
+            a="$CREDENTIALS"
+            b='"skipped"'
+            if [[ "$a" == "$b" ]]; then
+              rm "$D"
+            fi
+          done
+          ls
+
       - uses: actions/upload-artifact@master
         with:
           name: allure-report
