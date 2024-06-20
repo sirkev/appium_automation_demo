@@ -57,6 +57,10 @@ jobs:
       - name: Build apk
         run: flutter build apk --debug
 
+      - name: Install webdriverio reporter
+        run: |
+          npm install @wdio/allure-reporter --save-dev
+
       - name: Start Appium server
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
