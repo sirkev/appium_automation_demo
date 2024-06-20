@@ -10,7 +10,7 @@ set -ex
 pip install Appium-Python-Client
 
 # Install the latest version of Appium globally.
-npm install -g appium@next
+npm i --location=global appium
 
 # Install the XCUITest driver for iOS testing.
 appium driver install xcuitest
