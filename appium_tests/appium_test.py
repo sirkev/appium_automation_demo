@@ -10,7 +10,7 @@ options.load_capabilities({
     "appium:platformName": "Android",
     "appium:platformVersion": "10",
     "appium:deviceName": "emulator-5554",
-    "appium:app": "/home/kev/StudioProjects/appium_automation_demo/build/app/outputs/apk/debug/app-debug.apk",
+    "appium:app": "build/app/outputs/apk/debug/app-debug.apk",
     "appium:newCommandTimeout": 3600,
     "appium:connectHardwareKeyboard": True
 })
