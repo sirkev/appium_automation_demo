@@ -101,7 +101,7 @@ jobs:
 
 
       - name: Navigate to allure-results
-        run: cd./allure-results && ls
+        run: cd allure-results && ls
 
       - name: Remove skipped results
         run: |
