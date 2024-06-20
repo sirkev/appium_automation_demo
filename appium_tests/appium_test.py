@@ -8,9 +8,9 @@ options = AppiumOptions()
 options.load_capabilities({
     "appium:automationName": "UiAutomator2",
     "appium:platformName": "Android",
-    "appium:platformVersion": "12",
+    "appium:platformVersion": "10",
     "appium:deviceName": "emulator-5554",
-    "appium:app": "build/app/outputs/flutter-apk/app-debug.apk",
+    "appium:app": "/home/kev/StudioProjects/appium_automation_demo/build/app/outputs/apk/debug/app-debug.apk",
     "appium:newCommandTimeout": 3600,
     "appium:connectHardwareKeyboard": True
 })

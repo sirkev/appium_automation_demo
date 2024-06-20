@@ -89,7 +89,7 @@ jobs:
           path: gh-pages
 
       - name: Generate test report
-        uses: simple-elf/allure-report-action@master
+        uses: simple-elf/allure-report-action@v1.7
         if: always()
         id: allure-report
         with:
