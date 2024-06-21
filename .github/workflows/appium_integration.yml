@@ -69,7 +69,9 @@ jobs:
           npm install @wdio/allure-reporter --save-dev
 
       - name: run wdio
-        run: ls && npm run wdio
+        run: |
+          npm install @wdio/cli
+          ls && npm run wdio
 
       - name: Start Appium server
         run: |
