@@ -59,7 +59,10 @@ jobs:
 
       - name: Install allure cli
         run: |
+          npm install -g allure-commandline
           npm install --save-dev allure-commandline
+          allure --version
+          npx allure --version
 
       - name: Install webdriverio reporter
         run: |
