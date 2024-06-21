@@ -71,7 +71,7 @@ jobs:
       - name: run wdio
         run: |
           npm install @wdio/cli
-          ls && npm run wdio
+          npx wdio run wdio.conf.js
 
       - name: Start Appium server
         run: |
