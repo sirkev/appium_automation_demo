@@ -22,7 +22,8 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './appium_tests/appium_test.py'
+        'test/specs/**',
+        'appium/tests/**'
     ],
     // Patterns to exclude.
     exclude: [
@@ -75,15 +76,13 @@ exports.config = {
     // loggers:
     // - webdriver, webdriverio
     // - @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-    // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
+     logLevels: {
+         webdriver: 'info',
+         '@wdio/appium-service': 'info'
+     },
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
