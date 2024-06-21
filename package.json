@@ -1,0 +1,15 @@
+{
+  "keywords": [
+    "wdio",
+    "webdriver",
+    "webdriverio",
+    "cucumber",
+    "test",
+    "boilerplate",
+    "selenium"
+  ],
+  "scripts": {
+
+    "wdio": "wdio run wdio.conf.js"
+  }
+}
