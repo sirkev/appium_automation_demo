@@ -22,7 +22,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './test/specs/**/*.js'
+        'appium_tests/appium_test.py'
     ],
     // Patterns to exclude.
     exclude: [
